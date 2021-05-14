@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample website</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 40pc;
+            background: linear-gradient(rgb(14, 121, 192), rgb(98, 0, 163)90%);
+            position: relative;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: -1;
+        }
+
+
+        #designWriting {
+            /* border: 2px solid purple; */
+            border-radius: 20px;
+            text-align: center;
+            font-size: 5em;
+            color: white;
+            padding: 10px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            margin: 2.8em 0em 1em 0em;
+        }
+
+        #nav {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
+            transition: 0.5s;
+            background-color: rgba(116, 16, 146, 0);
+            /* background-color: linear-gradient(170deg,rgb(14, 121, 192), rgb(98, 0, 163)90%); */
+        }
+
+        .topIcons {
+            padding: 10px;
+            border: 2px solid white;
+            color: white;
+            border-radius: 80px;
+            margin: 10px;
+            text-align: center;
+            /* vertical-align:text-bottom; */
+            font-size: 1.4em;
+            transition: 0.4s;
+            font-weight: bold;
+        }
+
+        #topIconsHolder {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+        }
+
+        .topIcons:first-child {
+            border: none;
+            /* color: initial; */
+            color: white;
+        }
+
+        .topIcons:last-child {
+            border: none;
+        }
+
+        .topIcons:nth-child(2) {
+            visibility: hidden;
+        }
+
+        .topIcons:last-child {
+            display: none;
+        }
+
+        #menuHolder {
+            display: none;
+        }
+
+        .topIcons:hover {
+            background-color: whitesmoke;
+            cursor: pointer;
+            border-color: whitesmoke;
+            color:black;
+        }
+
+        .topIcons:first-child:hover {
+            background-color: unset;
+            color:whitesmoke;
+            cursor: initial;
+        }
+
+        .topIcons:last-child:hover {
+            background-color: unset;
+            color: unset;
+            cursor: pointer;
+        }
+
+        /* #pageHolder {
+        } */
+
+        @media only screen and (max-width:880px) {
+            .topIcons {
+                display: none;
+            }
+
+            #nav {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                /* background-color:rgb(14, 121, 192) ; */
+            }
+
+            .topIcons:first-child {
+                display: inline-block;
+            }
+
+            .topIcons:last-child {
+                display: inline-block;
+            }
+
+            #barOpener {
+                margin: 0px;
+                padding: 0px;
+            }
+
+            #barHolder {
+                margin-top: 10px;
+                padding: 16px;
+            }
+
+            .bars {
+                width: 22px;
+                height: 4px;
+                margin: 2px;
+                background-color: white;
+            }
+
+            #menuHolder {
+                display: block;
+                /* width:100%; */
+                /* height: 125px; */
+                height: 0px;
+                background-color: rgb(125, 35, 199);
+                color: white;
+                overflow: hidden;
+                font-size: 2rem;
+                /* transition:0.6s; */
+            }
+
+            .menuItems {
+                margin: 10px 0px 10px 15px;
+            }
+
+            .change .bars:first-child {
+                transform: rotate(-45deg) translate(-8.5px, 0px);
+            }
+
+            .change .bars:last-child {
+                transform: rotate(45deg) translate(-8.5px, 0px);
+            }
+
+            .change .bars:nth-child(2) {
+                opacity: 0;
+            }
+
+            .bars:first-child,
+            .bars:nth-child(2),
+            .bars:last-child,
+            #menuHolder,
+            #nav {
+                transition: 0.6s;
+            }
+        }
+        #ads {
+            display: none;
+        }
+
+        #heading {
+            font-size: 2rem;
+            margin: 1rem;
+        }
+
+        #theCards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1rem;
+        }
+
+        .cards {
+            display: inline-block;
+            width: 20rem;
+            height: 20rem;
+            box-shadow: 0px 5px 10px black;
+            margin: 1rem;
+            transition: 0.2s;
+            /* overflow:inherit; */
+        }
+
+        .cards:hover {
+            transform: scale(1.08);
+            cursor: pointer;
+        }
+
+        .cardImg {
+            padding: 0em;
+            width: 100%;
+            height: 10rem;
+            background: linear-gradient(160deg, rgb(11, 98, 197), rgb(236, 1, 79));
+        }
+
+        .cardWriting {
+            font-size: 0.95rem;
+            margin: 1em;
+        }
+
+        .contentHolder {
+            margin: 1.5em;
+        }
+
+        .contentWritingHead {
+            font-size: 3rem;
+        }
+
+        .contentWriting {
+            font-size: 18px;
+        }
+
+        #connect {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .connecter {
+            margin: 10px 0px 4px 0px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid rgb(109, 21, 192);
+            color: rgb(44, 7, 80);
+            box-shadow: 0px 2px 2px black;
+            font-size: 1.5rem;
+        }
+
+        footer {
+            padding: 30px;
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="topIconsHolder">
+        <nav id="nav">
+          <div class="topIcons">Logo</div>
+            <div class="topIcons"></div>
+            <div class="topIcons">Home</div>
+            <div class="topIcons">Sign in</div>
+            <div class="topIcons">Contact us</div>
+            <div id="barOpener" onclick="openMe()">
+                <div id="barHolder" onclick="openNav(this)">
+                    <div class="bars"></div>
+                    <div class="bars"></div>
+                    <div class="bars"></div>
+                </div>
+            </div>
+        </nav>
+        <div id="menuHolder">
+            <div class="menuItems">Home</div>
+            <hr>
+            <div class="menuItems">Sign in</div>
+            <hr>
+            <div class="menuItems">Contact us</div>
+        </div>
+        <script>
+            function openNav(x) {
+                x.classList.toggle("change")
+            }
+            function openMe() {
+                let openBar = document.getElementById("menuHolder")
+                if (openBar.style.height != "220px") {
+                    openBar.style.height = "220px"
+                    document.getElementById("nav").style.background = " rgba(116, 16, 146, 146)"
+                }
+                else {
+                    openBar.style.height = "0px"
+                    // document.getElementById("nav").style.background = "rgba(116, 16, 146, 0)"
+                }
+            }
+            window.onscroll = function () { scrollFunction() };
+            function scrollFunction() {
+                if (document.body.scrollTop > 500, document.documentElement.scrollTop > 500) {
+                    document.getElementById("nav").style.background = " rgba(116, 16, 146, 146)";
+
+                } else {
+                    document.getElementById("nav").style.background = "rgba(116, 16, 146, 0)";
+
+                }
+                // this only happens when selected ID ONLY
+            }
+        </script>
+    </div>
+    <div id="pageHolder">
+        <div id="fullPage">
+
+            <header>
+                <div id="designWriting">The <br>Ihv</div>
+            </header>
+
+            <div id="heading">These are some cards-</div>
+            <div id="theCards">
+                <div class="cards">
+                    <div class="cardImg"></div>
+                    <div class="cardWriting">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, optio in suscipit
+                        architecto aliquid praesentium maiores impedit voluptatibus aut sequi voluptatum enim
+                    </div>
+                </div>
+                <div class="cards">
+                    <div class="cardImg"></div>
+                    <div class="cardWriting">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, optio in suscipit
+                        architecto aliquid praesentium maiores impedit voluptatibus aut sequi voluptatum enim
+                    </div>
+                </div>
+                <div class="cards">
+                    <div class="cardImg"></div>
+                    <div class="cardWriting">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, optio in suscipit
+                        architecto aliquid praesentium maiores impedit voluptatibus aut sequi voluptatum enim
+                    </div>
+                </div>
+            </div>
+            <div class="contentHolder">
+                <div class="contentWritingHead">Heading</div>
+                <div class="contentWriting">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae consequuntur ab, eaque, expedita
+                    harum
+                    assumenda ea quas quasi blanditiis placeat praesentium. Fugit odit incidunt impedit sequi aut, esse
+                    cum
+                    ipsum!
+                    Explicabo commodi similique blanditiis, numquam sequi omnis? Aspernatur quos alias sint facere,
+                    quaerat
+                    molestias dolorem cupiditate reiciendis nostrum earum, excepturi ut? Blanditiis omnis praesentium
+                    sequi
+                    quibusdam adipisci quod, quis esse!
+                    Possimus quaerat aliquid laborum culpa, eaque beatae quibusdam, adipisci omnis corrupti optio harum
+                    asperiores, cupiditate corporis cumque assumenda? Sapiente praesentium pariatur nemo natus. Quis
+                    perspiciatis dolores quae itaque minus quaerat?
+                    At ratione nostrum enim adipisci facere eveniet dicta accusantium blanditiis suscipit soluta,
+                    tenetur
+                    ad.
+                    Molestias officiis neque adipisci reprehenderit incidunt, dolorum laudantium quae repellendus, quam
+                    facilis
+                    omnis veniam sapiente. Esse.
+                    Doloribus veritatis voluptatem fuga! Id ad vitae hic nostrum ut ipsa, in dolorum expedita,
+                    quibusdam,
+                    accusamus debitis facilis minus. Nostrum cum quod distinctio doloremque asperiores unde temporibus
+                    eveniet.
+                    Quam, animi.
+                    Quisquam aliquam aspernatur eos suscipit quos, ut tenetur explicabo dignissimos eaque, illo error
+                    omnis.
+                    Harum, officiis. Maiores voluptatibus, eveniet totam perspiciatis nemo accusantium excepturi
+                    laboriosam
+                    ad
+                    animi quibusdam debitis labore.
+                    Voluptatem sapiente, deserunt facere voluptas eius illum impedit labore error repellendus minima
+                    velit
+                    perspiciatis suscipit cumque sunt necessitatibus est vero distinctio! Fugit magnam pariatur officiis
+                    natus,
+                    asperiores architecto explicabo sequi!
+                    Eligendi, necessitatibus dicta non corrupti, voluptates mollitia ducimus alias deserunt labore fugit
+                    qui
+                    modi veritatis incidunt reprehenderit ab ad cupiditate error quis amet praesentium, suscipit
+                    doloribus
+                    asperiores ullam totam! Eos?
+                    Tenetur, aperiam laboriosam? Cumque, doloremque error! Rerum quibusdam vero veritatis. Quia vitae,
+                    blanditiis, tempore aspernatur hic vel ex repellendus possimus ipsa fugiat mollitia eum sunt quos
+                    ratione
+                    quidem placeat harum!
+                    Aut saepe eius cum perferendis temporibus nesciunt enim a deleniti veritatis corporis necessitatibus
+                    ullam,
+                    pariatur iure, dignissimos consequatur in vero blanditiis et, ut dolorem. Aliquid vitae culpa
+                    officia
+                    quia
+                    cupiditate!
+                </div>
+            </div>
+            <div class="contentHolder">
+                <div class="contentWritingHead">Heading</div>
+                <div class="contentWriting">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae consequuntur ab, eaque, expedita
+                    harum
+                    assumenda ea quas quasi blanditiis placeat praesentium. Fugit odit incidunt impedit sequi aut, esse
+                    cum
+                    ipsum!
+                    Explicabo commodi similique blanditiis, numquam sequi omnis? Aspernatur quos alias sint facere,
+                    quaerat
+                    molestias dolorem cupiditate reiciendis nostrum earum, excepturi ut? Blanditiis omnis praesentium
+                    sequi
+                    quibusdam adipisci quod, quis esse!
+                    Possimus quaerat aliquid laborum culpa, eaque beatae quibusdam, adipisci omnis corrupti optio harum
+                    asperiores, cupiditate corporis cumque assumenda? Sapiente praesentium pariatur nemo natus. Quis
+                    perspiciatis dolores quae itaque minus quaerat?
+                    At ratione nostrum enim adipisci facere eveniet dicta accusantium blanditiis suscipit soluta,
+                    tenetur
+                    ad.
+                    Molestias officiis neque adipisci reprehenderit incidunt, dolorum laudantium quae repellendus, quam
+                    facilis
+                    omnis veniam sapiente. Esse.
+                    Doloribus veritatis voluptatem fuga! Id ad vitae hic nostrum ut ipsa, in dolorum expedita,
+                    quibusdam,
+                    accusamus debitis facilis minus. Nostrum cum quod distinctio doloremque asperiores unde temporibus
+                    eveniet.
+                    Quam, animi.
+                    Quisquam aliquam aspernatur eos suscipit quos, ut tenetur explicabo dignissimos eaque, illo error
+                    omnis.
+                    Harum, officiis. Maiores voluptatibus, eveniet totam perspiciatis nemo accusantium excepturi
+                    laboriosam
+                    ad
+                    animi quibusdam debitis labore.
+                    Voluptatem sapiente, deserunt facere voluptas eius illum impedit labore error repellendus minima
+                    velit
+                    perspiciatis suscipit cumque sunt necessitatibus est vero distinctio! Fugit magnam pariatur officiis
+                    natus,
+                    asperiores architecto explicabo sequi!
+                    Eligendi, necessitatibus dicta non corrupti, voluptates mollitia ducimus alias deserunt labore fugit
+                    qui
+                    modi veritatis incidunt reprehenderit ab ad cupiditate error quis amet praesentium, suscipit
+                    doloribus
+                    asperiores ullam totam! Eos?
+                    Tenetur, aperiam laboriosam? Cumque, doloremque error! Rerum quibusdam vero veritatis. Quia vitae,
+                    blanditiis, tempore aspernatur hic vel ex repellendus possimus ipsa fugiat mollitia eum sunt quos
+                    ratione
+                    quidem placeat harum!
+                    Aut saepe eius cum perferendis temporibus nesciunt enim a deleniti veritatis corporis necessitatibus
+                    ullam,
+                    pariatur iure, dignissimos consequatur in vero blanditiis et, ut dolorem. Aliquid vitae culpa
+                    officia
+                    quia
+                    cupiditate!
+                </div>
+            </div>
+            <div class="contentHolder">
+                <div class="contentWritingHead">Heading</div>
+                <div class="contentWriting">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae consequuntur ab, eaque, expedita
+                    harum
+                    assumenda ea quas quasi blanditiis placeat praesentium. Fugit odit incidunt impedit sequi aut, esse
+                    cum
+                    ipsum!
+                    Explicabo commodi similique blanditiis, numquam sequi omnis? Aspernatur quos alias sint facere,
+                    quaerat
+                    molestias dolorem cupiditate reiciendis nostrum earum, excepturi ut? Blanditiis omnis praesentium
+                    sequi
+                    quibusdam adipisci quod, quis esse!
+                    Possimus quaerat aliquid laborum culpa, eaque beatae quibusdam, adipisci omnis corrupti optio harum
+                    asperiores, cupiditate corporis cumque assumenda? Sapiente praesentium pariatur nemo natus. Quis
+                    perspiciatis dolores quae itaque minus quaerat?
+                    At ratione nostrum enim adipisci facere eveniet dicta accusantium blanditiis suscipit soluta,
+                    tenetur
+                    ad.
+                    Molestias officiis neque adipisci reprehenderit incidunt, dolorum laudantium quae repellendus, quam
+                    facilis
+                    omnis veniam sapiente. Esse.
+                    Doloribus veritatis voluptatem fuga! Id ad vitae hic nostrum ut ipsa, in dolorum expedita,
+                    quibusdam,
+                    accusamus debitis facilis minus. Nostrum cum quod distinctio doloremque asperiores unde temporibus
+                    eveniet.
+                    Quam, animi.
+                    Quisquam aliquam aspernatur eos suscipit quos, ut tenetur explicabo dignissimos eaque, illo error
+                    omnis.
+                    Harum, officiis. Maiores voluptatibus, eveniet totam perspiciatis nemo accusantium excepturi
+                    laboriosam
+                    ad
+                    animi quibusdam debitis labore.
+                    Voluptatem sapiente, deserunt facere voluptas eius illum impedit labore error repellendus minima
+                    velit
+                    perspiciatis suscipit cumque sunt necessitatibus est vero distinctio! Fugit magnam pariatur officiis
+                    natus,
+                    asperiores architecto explicabo sequi!
+                    Eligendi, necessitatibus dicta non corrupti, voluptates mollitia ducimus alias deserunt labore fugit
+                    qui
+                    modi veritatis incidunt reprehenderit ab ad cupiditate error quis amet praesentium, suscipit
+                    doloribus
+                    asperiores ullam totam! Eos?
+                    Tenetur, aperiam laboriosam? Cumque, doloremque error! Rerum quibusdam vero veritatis. Quia vitae,
+                    blanditiis, tempore aspernatur hic vel ex repellendus possimus ipsa fugiat mollitia eum sunt quos
+                    ratione
+                    quidem placeat harum!
+                    Aut saepe eius cum perferendis temporibus nesciunt enim a deleniti veritatis corporis necessitatibus
+                    ullam,
+                    pariatur iure, dignissimos consequatur in vero blanditiis et, ut dolorem. Aliquid vitae culpa
+                    officia
+                    quia
+                    cupiditate!
+                </div>
+            </div>
+            <div id="connect">
+                <div class="connecter">Facebook</div>
+                <div class="connecter">Instagram</div>
+            </div>
+            <footer>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione unde quas, error reprehenderit facere
+                quod,
+                placeat exercitationem culpa debitis earum aliquam accusamus officia dolore reiciendis molestias. Est
+                rerum
+                voluptates quas.
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
